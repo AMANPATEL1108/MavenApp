@@ -2,6 +2,9 @@ package com.progrank.maven.MavenApp.Class;
 
 
 import ch.qos.logback.core.model.Model;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class First {
 
 
-//    @RequestMapping("/home")
-//    public String hello(){
-//        return "Hello";
-//    }
-
-    @GetMapping("/")
-    public String index(){
+    @RequestMapping("/index")
+    public String hello(){
         return "index";
+    }
+
+    @RequestMapping("/result")
+    public String index(String data,HttpSession session){
+        System.out.println("Data:"+data);
+        session.setAttribute("value:",data);
+        return "result";
     }
 }
